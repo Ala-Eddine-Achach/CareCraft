@@ -60,13 +60,13 @@ class Main extends StatelessWidget {
           return CurvedNavigationBar(
             backgroundColor: bleuTresTresClair,
             items: [
-              Icon(Icons.home_filled,
+              Icon(Icons.home_outlined,
                 color: (value.currentIndex == 0) ? bleu : bleuTresClair,
                 size: 30,),
-              Icon(Icons.calendar_month_rounded,
+              Icon(Icons.medical_information_outlined,
                 color: (value.currentIndex == 1) ? bleu : bleuTresClair,
                 size: 30,),
-              Icon(Icons.whatshot_outlined,
+              Icon(Icons.favorite_outline_sharp,
                 color: (value.currentIndex == 2) ? bleu : bleuTresClair,
                 size: 30,),
               Icon(Icons.account_circle_outlined,

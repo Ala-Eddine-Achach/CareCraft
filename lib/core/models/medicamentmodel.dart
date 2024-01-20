@@ -3,7 +3,10 @@ class Medication {
   final String name;
   final String briefDescription;
   final String imageUrl;
-  final String fullDescription;
+  final String howWork;
+  final String whatUseFor;
+  final String howUse;
+  final String sideEffects;
   final int dosagePerDay;
 
   Medication({
@@ -11,7 +14,10 @@ class Medication {
     required this.name,
     required this.briefDescription,
     required this.imageUrl,
-    required this.fullDescription,
+    required this.howWork,
+    required this.whatUseFor,
+    required this.howUse,
+    required this.sideEffects,
     required this.dosagePerDay,
   });
 }

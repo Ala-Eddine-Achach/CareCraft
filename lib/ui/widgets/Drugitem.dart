@@ -1,6 +1,6 @@
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
-Widget DrugItem(){
+Widget DrugItem(String name, String imageUrl, String description){
   return Container(
 
       height: 120,
@@ -23,7 +23,7 @@ Widget DrugItem(){
                 children: <Widget>[
                   SizedBox(height: 4,),
                   Text(
-                    "Panadol",
+                    name,
                     style: TextStyle(
                         fontSize: 25,
                         color:bleu,
@@ -33,7 +33,7 @@ Widget DrugItem(){
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        " a popular pain reliever and fever reducer with paracetamol as its active ingredient.",
+                        description,
                         style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black,
@@ -45,7 +45,7 @@ Widget DrugItem(){
               ),
             ),
             Image.network(
-              "https://www.panadol.com/content/dam/cf-consumer-healthcare/panadol-reborn/en_IE/product-detail/panadol-extra-advance-box-32/Panadol-Extra-Advance-Box-32s380x463.png",
+              imageUrl,
               width: 65,                    height: 90,
 
               fit: BoxFit.cover, // Adjust the fit based on your requirements
@@ -53,7 +53,7 @@ Widget DrugItem(){
                 return Icon(
                   Icons.medical_services_outlined, // Show an error icon if the image fails to load
                   size: 57,
-                  color: bleuTresTresClair, // Customize the error icon color
+                  color: bleuClair, // Customize the error icon color
                 );
               },
               loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {

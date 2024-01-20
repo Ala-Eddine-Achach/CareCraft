@@ -11,7 +11,10 @@ class MedicationModelView {
         name: medication['name'],
         briefDescription: medication['briefDescription'],
         imageUrl: medication['imageUrl'],
-        fullDescription: medication['fullDescription'],
+        howWork: medication['howWork'],
+        whatUseFor: medication['whatUseFor'],
+        howUse: medication['howUse'],
+        sideEffects: medication['sideEffects'],
         dosagePerDay: medication['dosagePerDay'],
       );
     }).toList();

@@ -1,9 +1,15 @@
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/models/medicamentmodel.dart';
+
+
+
 class DrugDetails extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    final Medication medication = ModalRoute.of(context)!.settings.arguments as Medication;
     return Scaffold(
       //app bar with transparent background and back icon ios
       appBar: AppBar(
@@ -30,12 +36,12 @@ class DrugDetails extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: FittedBox(
                     child: Image.network(
-                      "https://www.panadol.com/content/dam/cf-consumer-healthcare/panadol-reborn/en_IE/product-detail/panadol-extra-advance-box-32/Panadol-Extra-Advance-Box-32s380x463.png",
+                      medication.imageUrl,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Icon(
                           Icons.medical_services_outlined,
-                          size: 57,
+
                           color: Colors.blue,
                         );
                       },
@@ -81,13 +87,13 @@ class DrugDetails extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  padding: const EdgeInsets.only(left: 15, right: 15,top: 10),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text("Panadol",
+                        Text(medication.name,
                           style: TextStyle(
                             fontSize: 25,
                             color: bleu,
@@ -95,8 +101,129 @@ class DrugDetails extends StatelessWidget {
                         ),
                         SizedBox(height: 10,),
                         Text(
-                          " a popular pain reliever and fever reducer with paracetamol as its active ingredient.",
+                          medication.briefDescription,
                           textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                    SizedBox(height: 10,),
+                    Text(
+                      "Dosage per day",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+
+                      ),),
+                        SizedBox(height: 10,),
+                        Text(
+                          medication.dosagePerDay.toString(),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+
+
+                          ),
+                         SizedBox(height: 10,),
+                        Text(
+                          "How it works",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                          SizedBox(height: 10,),
+                        Text(
+                          medication.howWork,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          "what it is used for ?",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          medication.whatUseFor,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          "How to use it ?",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          medication.howUse,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+
+                              fontSize: 15,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          "have you ever had any side effects ?",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+
+                          ),
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          medication.sideEffects,
+                          textAlign: TextAlign.justify,
                           style: const TextStyle(
 
                               fontSize: 15,
@@ -116,7 +243,7 @@ class DrugDetails extends StatelessWidget {
               top: (MediaQuery.of(context).size.height / 2.3) - 30,
               right: 35,
               child: Card(
-                color: Colors.blue,
+                color: bleu,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.0),
                 ),

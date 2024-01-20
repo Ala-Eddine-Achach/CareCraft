@@ -1,6 +1,9 @@
 import 'package:carecraft/ui/theme.dart';
 import 'package:carecraft/ui/widgets/Drugitem.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/models/medicamentmodel.dart';
+import '../../core/viewmodels/medicamentmodelview.dart';
 class DrugsList extends StatefulWidget {
   const DrugsList({super.key});
 
@@ -11,8 +14,11 @@ class DrugsList extends StatefulWidget {
 class _DrugsListState extends State<DrugsList> {
   ScrollController controller = ScrollController();
   double topContainer = 0;
+  late List<Medication> medicationsList ;
+  MedicationModelView drugsView=MedicationModelView();
   @override
   void initState() {
+    medicationsList=drugsView.medicationsList;
     controller.addListener(() {
       setState(() {
         topContainer = (controller.offset /140);
@@ -43,7 +49,7 @@ class _DrugsListState extends State<DrugsList> {
       ),
       body: ListView.builder(
         controller: controller,
-        itemCount: 20,
+        itemCount: medicationsList.length,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           double scale = 1;
@@ -64,10 +70,11 @@ class _DrugsListState extends State<DrugsList> {
                   heightFactor: 1,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/drugDetails');
+                      Navigator.pushNamed(context, '/drugDetails',
+                          arguments: medicationsList[index]);
                     },
-                      child: DrugItem()),
-                  ));
+                      child: DrugItem(medicationsList[index].name,medicationsList[index].imageUrl,medicationsList[index].briefDescription),
+                  )));
         },
       ),
     );
