@@ -1,3 +1,4 @@
+import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/category.dart';
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: Colors.white,
+        color: bleuTresTresClair  ,
         padding: const EdgeInsets.only(top: 30, left: 0, right: 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +47,9 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  category("assets/capsule.png", "Drug", 5),
-                  category("assets/virus.png", "Virus", 10),
-                  category("assets/heart.png", "Physo", 10),
+                  category(context,"assets/capsule.png", "Drug", 5),
+                  category(context,"assets/virus.png", "Virus", 10),
+                  category(context,"assets/heart.png", "Physo", 10),
                 ],
               ),
             ),

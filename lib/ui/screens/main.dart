@@ -22,11 +22,11 @@ class Main extends StatelessWidget {
       Profile(),
     ];
     return Scaffold(
-      backgroundColor: bleuTresTresClair,
+
       //app bar containing text hello user
       //and icon of notification
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: bleuTresClair,
         elevation: 0,
         title: TextWidget(
           "Hello, Ala Edddine",
@@ -39,7 +39,7 @@ class Main extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20),
             child: Icon(
               Icons.notifications,
-              color: bleuTresClair,
+              color: bleuTresTresClair,
             ),
           ),
         ],
