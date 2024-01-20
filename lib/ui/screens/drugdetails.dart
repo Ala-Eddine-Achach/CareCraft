@@ -95,9 +95,39 @@ class DrugDetails extends StatelessWidget {
                       children: <Widget>[
                         Text(medication.name,
                           style: TextStyle(
-                            fontSize: 25,
-                            color: bleu,
+
+                            fontWeight: FontWeight.bold,
+                            fontSize: 35,
+                            color: bleu.withOpacity(0.8),
                           ),
+                        ),
+                        SizedBox(height: 10,),
+                        GestureDetector(
+
+
+                            onLongPress: (){
+                              showTimePicker(context: context, initialTime: TimeOfDay.now());
+
+                            },
+
+                            child:Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                                  color: bleuClair,
+                                  boxShadow: [
+                                    BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
+                                  ]),
+                              //width 70% of the screen
+
+                              child: Text("reminder at 10 : 10 ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  color: bleuTresTresClair,
+                                ),
+                              ),
+                            )
                         ),
                         SizedBox(height: 10,),
                         Text(
@@ -105,23 +135,23 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
 
-                              fontSize: 15,
+                              fontSize: 18,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold
+
 
                           ),
                         ),
-                    SizedBox(height: 10,),
-                    Text(
-                      "Dosage per day",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
+                        SizedBox(height: 10,),
+                        Text(
+                          "Dosage per day",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
 
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
+                              fontSize: 25,
+                              color: bleu,
+                              fontWeight: FontWeight.bold
 
-                      ),),
+                          ),),
                         SizedBox(height: 10,),
                         Text(
                           medication.dosagePerDay.toString(),
@@ -135,28 +165,28 @@ class DrugDetails extends StatelessWidget {
                           ),
 
 
-                          ),
-                         SizedBox(height: 10,),
+                        ),
+                        SizedBox(height: 10,),
                         Text(
                           "How it works",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
 
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 25,
+                              color: bleu,
                               fontWeight: FontWeight.bold
 
                           ),
                         ),
-                          SizedBox(height: 10,),
+                        SizedBox(height: 10,),
                         Text(
                           medication.howWork,
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
 
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold
+
 
                           ),
                         ),
@@ -166,8 +196,8 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
 
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 25,
+                              color: bleu,
                               fontWeight: FontWeight.bold
 
                           ),
@@ -178,9 +208,9 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
 
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold
+
 
                           ),
                         ),
@@ -190,8 +220,8 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
 
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 25,
+                              color: bleu,
                               fontWeight: FontWeight.bold
 
                           ),
@@ -202,9 +232,9 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
 
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold
+
 
                           ),
                         ),
@@ -214,8 +244,8 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: const TextStyle(
 
-                              fontSize: 20,
-                              color: Colors.black,
+                              fontSize: 25,
+                              color: bleu,
                               fontWeight: FontWeight.bold
 
                           ),
@@ -226,12 +256,12 @@ class DrugDetails extends StatelessWidget {
                           textAlign: TextAlign.justify,
                           style: const TextStyle(
 
-                              fontSize: 15,
+                              fontSize: 16,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold
 
                           ),
                         ),
+                        SizedBox(height: 40,),
 
                       ],
                     ),
