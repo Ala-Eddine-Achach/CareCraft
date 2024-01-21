@@ -1,4 +1,5 @@
-import 'package:carecraft/core/viewmodels/navifgationprov.dart';
+import 'package:carecraft/core/services/favouritedrugprov.dart';
+import 'package:carecraft/core/services/navifgationprov.dart';
 import 'package:carecraft/ui/screens/doctorinfo.dart';
 import 'package:carecraft/ui/screens/drugdetails.dart';
 import 'package:carecraft/ui/screens/drugslist.dart';
@@ -8,7 +9,7 @@ import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
+import 'package:carecraft/core/services/favouritedrugprov.dart';
 
 Future<void> main()  async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -29,8 +30,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => NavigationProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavigationProvider()),
+        //HiveDataProvider
+        ChangeNotifierProvider(create: (context) => HiveDataProvider()),
+      ],
+
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           initialRoute: '/',

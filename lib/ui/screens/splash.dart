@@ -1,5 +1,7 @@
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -17,7 +19,10 @@ class _SplashState extends State<Splash> {
   }
 
   init() async {
+    await Hive.initFlutter();
+    Hive.registerAdapter<TimeOfDay>(TimeOfDayAdapter());
     await Future.delayed(Duration(seconds: 5));
+    Box _box =await Hive.openBox<TimeOfDay>('drug');
     Navigator.pushReplacementNamed(context, '/home');
   }
   @override

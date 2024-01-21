@@ -1,4 +1,4 @@
-import 'package:carecraft/core/viewmodels/navifgationprov.dart';
+import 'package:carecraft/core/services/navifgationprov.dart';
 import 'package:carecraft/ui/screens/profile.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
