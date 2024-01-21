@@ -1,4 +1,5 @@
 import 'package:carecraft/core/viewmodels/navifgationprov.dart';
+import 'package:carecraft/ui/screens/doctorinfo.dart';
 import 'package:carecraft/ui/screens/drugdetails.dart';
 import 'package:carecraft/ui/screens/drugslist.dart';
 import 'package:carecraft/ui/screens/main.dart';
@@ -39,6 +40,8 @@ class _MyAppState extends State<MyApp> {
             '/home': (context) => const Main(),
             '/Drug': (context) => const DrugsList(),
             '/drugDetails': (context) =>  DrugDetails(),
+            '/doctorinfo':(context)=>DoctorInfo(),
+
           }),
     );
   }

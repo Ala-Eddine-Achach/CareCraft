@@ -28,11 +28,8 @@ class _SplashState extends State<Splash> {
 
       Container(
         decoration: const BoxDecoration(
-
             gradient: LinearGradient(
                 colors: [bleuTresTresClair,
-
-
                   bleuTresClair,
                   bleuClair,
                   bleu,
