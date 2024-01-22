@@ -69,12 +69,13 @@ class GridElement extends StatelessWidget {
 
                 Navigator.pushNamed(context, '/doctorinfo',arguments: doc);
 
-              }, child: Text('Contact Now'),
+              }
+              , child: Text('Contact Now'),
                 style:ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue[800],
                     foregroundColor: Colors.white,
                     shape:RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0)
+                        borderRadius: BorderRadius.circular(20)
                     )
                 ),
               )

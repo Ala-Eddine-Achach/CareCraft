@@ -13,11 +13,11 @@ class DoctorsSec extends StatefulWidget {
 
 class _DoctorsSecState extends State<DoctorsSec> {
   List docList = [
-    Doctor(image: d4, name: 'Ala', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
-    Doctor(image: d4, name: 'Ala', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
-    Doctor(image: d4, name: 'Ala', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
-    Doctor(image: d4, name: 'Ala', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
-    Doctor(image: d4, name: 'Ala', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
+    Doctor(image: d4, name: 'Jalel lkadri', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
+    Doctor(image: d4, name: 'chantal', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
+    Doctor(image: d4, name: 'hahah', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
+    Doctor(image: d4, name: 'monica', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
+    Doctor(image: d4, name: 'hihi', function: 'Psy', available: true, phoneNumber: '98564138', description: s),
 
   ];
 
@@ -35,22 +35,28 @@ class _DoctorsSecState extends State<DoctorsSec> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 45,
-              child: TextField(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.black.withOpacity(0.2)),
+              ),
+              child: TextFormField(
                 decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search_rounded,),
-                    hintText: 'Search by name or by speciality',
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20)
-                    )
+                  border: InputBorder.none,
+                  prefixIcon: Icon(
+                    Icons.search_sharp,
+                    size: 30,
+                    color: Colors.black.withOpacity(.5),
+                  ),
+                  hintText: "   Search",
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: 5,),
           Expanded(
             child: GridView.builder(
               physics: BouncingScrollPhysics(),

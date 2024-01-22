@@ -21,7 +21,6 @@ class DoctorInfo extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        actions: [Icon(CupertinoIcons.bell)],
         title: Text(
           "Doctor's Details",
         ),
