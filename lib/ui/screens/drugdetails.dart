@@ -134,16 +134,17 @@ class _DrugDetailsState extends State<DrugDetails> {
                           (value.hasId(medication.id))?GestureDetector(
 
 
-                              onLongPress: () async {
+                              onTap: () async {
                                 print("object");
-                                var time=await showTimePicker(context: context, initialTime: TimeOfDay.now());
+                                var time=await showTimePicker(context: context, initialTime:value.getNameById(medication.id)??TimeOfDay.now() );
                                 value.addReminder(medication.id, time!);
 
 
                               },
 
-                              child:Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                              child:AnimatedContainer(
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
                                     color: bleuClair,
@@ -152,13 +153,21 @@ class _DrugDetailsState extends State<DrugDetails> {
                                     ]),
                                 //width 70% of the screen
 
-                                child: Text(
-                                  value.getNameById(medication.id)?.format(context)??'Add reminder',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30,
-                                    color: bleuTresTresClair,
-                                  ),
+                                duration: Duration(milliseconds: 900),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(Icons.alarm,color: bleuTresTresClair,
+                                      size: 30,),
+                                    Text(
+                                      value.getNameById(medication.id)?.format(context)??'Add reminder',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30,
+                                        color: bleuTresTresClair,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               )
                           ):SizedBox(height: 0,),
