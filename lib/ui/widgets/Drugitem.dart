@@ -25,7 +25,7 @@ Widget DrugItem(String name, String imageUrl, String description){
                   Text(
                     name,
                     style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 23,
                         color:bleu,
                         ),
                   ),
@@ -37,7 +37,7 @@ Widget DrugItem(String name, String imageUrl, String description){
                         style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                            ),
                       ),
                     ),
                   )

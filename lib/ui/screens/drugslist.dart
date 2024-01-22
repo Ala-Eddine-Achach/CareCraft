@@ -74,7 +74,9 @@ class _DrugsListState extends State<DrugsList> {
                           arguments: medicationsList[index]);
                     },
                       child: DrugItem(medicationsList[index].name,medicationsList[index].imageUrl,medicationsList[index].briefDescription),
-                  )));
+                  )
+              )
+          );
         },
       ),
     );

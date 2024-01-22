@@ -24,6 +24,9 @@ class HiveDataProvider extends ChangeNotifier {
     // Replace 'name' with the key you used to store the name in the box
     return _box.get(id);
   }
+  int getLength() {
+    return _box.length;
+  }
 
   bool hasId(int id) {
     return _box.containsKey(id);
