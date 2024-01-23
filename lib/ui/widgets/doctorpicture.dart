@@ -9,15 +9,12 @@ class DoctorPicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double _width=MediaQuery.of(context).size.width;
+    final double _height=MediaQuery.of(context).size.height;
     return Positioned(
-      top: MediaQuery
-          .of(context)
-          .size
-          .height * 0.12,
-      left: MediaQuery
-          .of(context)
-          .size
-          .width * 0.2,
+      top: _height*0.08,
+      left:_width*0.24,
+      right: _width*0.24,
       child: ClipRRect(
           child: Container(
               decoration: BoxDecoration(
@@ -25,8 +22,7 @@ class DoctorPicture extends StatelessWidget {
                   color: bleuTresClair,
                   border: Border.all(color: Colors.white, width: 3,)
               ),
-              width: 200,
-              height: 150,
+              height: _height*0.18,
               child: Center(
                 child: Image.asset(
                   imPath,

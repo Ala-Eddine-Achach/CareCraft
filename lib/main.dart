@@ -47,7 +47,6 @@ class _MyAppState extends State<MyApp> {
             '/Drug': (context) => const DrugsList(),
             '/drugDetails': (context) =>  DrugDetails(),
             '/doctorinfo':(context)=>DoctorInfo(),
-
           }),
     );
   }
