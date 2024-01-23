@@ -11,6 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:carecraft/core/services/favouritedrugprov.dart';
 
+import 'core/services/tipservice.dart';
+
 Future<void> main()  async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -32,6 +34,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => TipsProvider()),
         ChangeNotifierProvider(create: (context) => NavigationProvider()),
         //HiveDataProvider
         ChangeNotifierProvider(create: (context) => HiveDataProvider()),

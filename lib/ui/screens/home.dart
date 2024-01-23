@@ -1,5 +1,7 @@
+import 'package:carecraft/core/services/tipservice.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/category.dart';
 
@@ -20,25 +22,130 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            Expanded(
               child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.black.withOpacity(0.2)),
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    prefixIcon: Icon(
-                      Icons.search_sharp,
-                      size: 30,
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                    hintText: "   Search",
-                  ),
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+
+                alignment: Alignment.center,
+                // Replace this with your big screen content
+
+                child: Consumer<TipsProvider>(
+                  builder: (BuildContext context, TipsProvider value, Widget? child) {
+                   return Stack(
+                     alignment: Alignment.center,
+                     children: [
+                       Container(width: double.infinity,
+                         height: double.infinity,
+                         child: Column(
+                           children: [
+                             Flexible(
+                               flex: 4,
+                               fit: FlexFit.tight,
+                               child: Container(
+                                 width: double.infinity,
+
+                                 child: FittedBox(
+                                   child: Image.network(
+                                     value.currentTip.image,
+                                     fit: BoxFit.cover,
+                                     errorBuilder: (context, error, stackTrace) {
+                                       return Icon(
+                                         Icons.tips_and_updates_outlined,
+
+                                         color: Colors.blue,
+                                       );
+                                     },
+                                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                       if (loadingProgress == null) {
+                                         return child;
+                                       }
+                                       return Center(
+                                         child: CircularProgressIndicator(
+                                           value: loadingProgress.expectedTotalBytes != null
+                                               ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                               : null,
+                                         ),
+                                       );
+                                     },
+                                   ),
+                                 ),
+                               ),
+                             ),
+                             Flexible(
+                               flex: 1,
+                               fit: FlexFit.tight,
+                               child: Container(
+
+                               ),
+                             )
+                           ],
+                         ),
+                       ),
+                       Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Flexible(fit: FlexFit.tight,
+                             flex: 6,
+                             child: SizedBox(),
+                           )
+                           ,
+                           Flexible(
+                             fit: FlexFit.tight,
+                             flex: 4,
+                             child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 7),
+                               width: double.infinity,
+                               //rounded edges
+                               decoration: BoxDecoration(
+                                 color: Color.lerp(Colors.grey, bleu, .4)?.withOpacity(.95),
+                                 borderRadius: BorderRadius.circular(30),
+                               ),
+                               //color  grey merged with bleu and have much tranparency
+                               child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.spaceAround ,
+
+                                 children: [
+                                   Text("Tip of the day",
+
+                                     style: TextStyle(
+                                        fontSize: 35,
+                                       fontWeight: FontWeight.bold,
+                                       color: bleuTresClair,
+                                     ),
+                                   ),
+                                   Center(
+                                     child: Text(
+
+                                       value.currentTip.description,
+                                        textAlign: TextAlign.center,
+                                       style: TextStyle(
+                                          fontSize: 18,
+
+                                         color: Colors.white,
+                                       ),
+                                     ),
+                                   ),
+                                 ],
+                               ),
+                             ),
+                           ),
+                         ],
+                       ),
+                       Positioned(
+                         //an icon in bottom left
+                           bottom: 0,
+                           right: 0,
+                           child:IconButton(
+                             icon: Icon(Icons.refresh, color: bleu, size: 40 ),
+                             onPressed: () {
+                                value.getRandomTip();
+                             },
+                           )
+                       )
+                     ],
+                   );
+                  },
+
                 ),
               ),
             ),
@@ -53,6 +160,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
+            SizedBox(height: 5),
           ],
         ),
       ),

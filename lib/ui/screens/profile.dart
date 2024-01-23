@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
         children: [
           Center(
             child: Padding(
-              padding:  EdgeInsets.only(top: _height*0.1),
+              padding:  EdgeInsets.only(top: _height*0.05),
               child: CircleAvatar(
                 radius: _width*0.18,
                 backgroundImage: AssetImage(d4),

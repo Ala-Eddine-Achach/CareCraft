@@ -231,7 +231,7 @@ class _DrugDetailsState extends State<DrugDetails> {
                       child: Center(
                         child: Icon(
                           Icons.favorite_sharp,
-                          color: (value.hasId(medication.id))?Colors.red:Colors.white,
+                          color: (value.hasId(medication.id))?bleuClair.withRed(250):bleuTresTresClair,
                           size: (value.hasId(medication.id))?34:30,
                         ),
                       ),
