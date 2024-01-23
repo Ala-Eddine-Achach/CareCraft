@@ -6,10 +6,11 @@ Widget DrugItem(String name, String imageUrl, String description){
       height: 120,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
+          border: Border.all(color: bleu, width: 1),
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: bleuTresTresClair,
           boxShadow: [
-            BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
+            BoxShadow(color: bleu.withAlpha(100), blurRadius: 10.0),
           ]),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6),

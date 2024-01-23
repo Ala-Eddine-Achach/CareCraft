@@ -41,7 +41,12 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   line_awesome_flutter: ^2.0.0
-
+  flutter_native_splash: ^2.3.9
+flutter_native_splash:
+  android: true
+  ios: true
+  image: assets/carecraft.png
+  color: "#E8F4FA"
 dev_dependencies:
   flutter_test:
     sdk: flutter
