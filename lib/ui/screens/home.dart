@@ -133,7 +133,7 @@ class _HomeState extends State<Home> {
                        ),
                        Positioned(
                          //an icon in bottom left
-                           bottom: 0,
+                           top: 0,
                            right: 0,
                            child:IconButton(
                              icon: Icon(Icons.refresh, color: bleu, size: 40 ),
@@ -154,8 +154,8 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  category(context,"assets/capsule.png", "Drug", 5),
-                  category(context,"assets/virus.png", "Virus", 10),
+                  category(context,"assets/capsule.png", "Drug", 0),
+                  category(context,"assets/virus.png", "Virus", 5),
                   category(context,"assets/heart.png", "Physo", 10),
                 ],
               ),

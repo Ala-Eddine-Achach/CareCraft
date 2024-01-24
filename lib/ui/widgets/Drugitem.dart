@@ -35,6 +35,7 @@ Widget DrugItem(String name, String imageUrl, String description){
                       alignment: Alignment.centerLeft,
                       child: Text(
                         description,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                             fontSize: 15,
                             color: Colors.black,
