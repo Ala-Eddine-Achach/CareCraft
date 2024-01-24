@@ -23,7 +23,7 @@ class _SplashState extends State<Splash> {
     Hive.registerAdapter<TimeOfDay>(TimeOfDayAdapter());
     await Future.delayed(Duration(seconds: 5));
     Box _box =await Hive.openBox<TimeOfDay>('drug');
-    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, '/login');
   }
   @override
   Widget build(BuildContext context) {
