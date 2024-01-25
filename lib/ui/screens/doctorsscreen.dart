@@ -28,14 +28,14 @@ class _DoctorsSecState extends State<DoctorsSec> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
             child: Text(
               'Ask Our Doctors For Help',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: Container(
               height: 50,
               decoration: BoxDecoration(

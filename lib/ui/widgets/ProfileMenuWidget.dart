@@ -19,31 +19,34 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return GestureDetector(
+      onTap: onPress,
+      child: ListTile(
 
-        leading: Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: bleu,
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Icon(icon),
-        ),
-        title: Text(title,
-        style: TextStyle(
-          color: (option!=null)?option:Colors.black
-        ),),
-
-        trailing:!end? Container(
-            width: 30,
-            height: 30,
+          leading: Container(
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
+              color: bleu,
               borderRadius: BorderRadius.circular(100),
-              color: Colors.grey.withOpacity(0.1),
             ),
-            child: const Icon(
-                LineAwesomeIcons.angle_right, size: 18.0, color: Colors.grey)):null
+            child: Icon(icon),
+          ),
+          title: Text(title,
+          style: TextStyle(
+            color: (option!=null)?option:Colors.black
+          ),),
+
+          trailing:!end? Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.grey.withOpacity(0.1),
+              ),
+              child: const Icon(
+                  LineAwesomeIcons.angle_right, size: 18.0, color: Colors.grey)):null
+      ),
     );
   }
 }

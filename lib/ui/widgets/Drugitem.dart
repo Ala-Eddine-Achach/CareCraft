@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget DrugItem(String name, String imageUrl, String description){
   return Container(
 
-      height: 120,
+      height: 150,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
           border: Border.all(color: bleu, width: 1),
@@ -34,10 +34,12 @@ Widget DrugItem(String name, String imageUrl, String description){
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
+
                         description,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             color: Colors.black,
                             ),
                       ),

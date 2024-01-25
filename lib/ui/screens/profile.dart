@@ -27,18 +27,19 @@ class _ProfileState extends State<Profile> {
               padding:  EdgeInsets.only(top: _height*0.05),
               child: CircleAvatar(
                 radius: _width*0.18,
-                backgroundImage: AssetImage(d4),
+                //image .network
+                backgroundImage: AssetImage("assets/img.png"),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: Text('Ala Edinne 003',style: TextStyle(
+            child: Text('Jalel lkadri',style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold
             ),),
           ),
-          Text('alaeddine141@gmail.com',style: TextStyle(
+          Text('Jalel_4-4-2@gmail.com',style: TextStyle(
             color: Colors.grey.shade700
           ),),
           SizedBox(height: _height*0.015,),
@@ -58,7 +59,9 @@ class _ProfileState extends State<Profile> {
           ProfileMenuWidget(icon: LineAwesomeIcons.cog,title: "Settings",onPress: (){},end: false),
           ProfileMenuWidget(icon: LineAwesomeIcons.user_check,title: "User Management",onPress: (){},end: false),
           ProfileMenuWidget(icon: LineAwesomeIcons.info,title: "Settings",onPress: (){},end: false),
-          ProfileMenuWidget(icon: LineAwesomeIcons.alternate_sign_out,title: "Sign Out",onPress: (){},end: true,option:Colors.red),
+          ProfileMenuWidget(icon: LineAwesomeIcons.alternate_sign_out,title: "Sign Out",onPress: (){
+            Navigator.pushNamed(context, '/login');
+          },end: true,option:Colors.red),
         ],
       ),
 

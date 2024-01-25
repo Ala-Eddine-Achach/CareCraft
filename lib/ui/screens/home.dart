@@ -113,15 +113,18 @@ class _HomeState extends State<Home> {
                                        color: bleuTresClair,
                                      ),
                                    ),
-                                   Center(
-                                     child: Text(
-
-                                       value.currentTip.description,
-                                        textAlign: TextAlign.center,
-                                       style: TextStyle(
-                                          fontSize: 18,
-
-                                         color: Colors.white,
+                                   Expanded(
+                                     child: SingleChildScrollView(
+                                       scrollDirection: Axis.vertical,
+                                       child: Text(
+                                       
+                                         value.currentTip.description,
+                                          textAlign: TextAlign.center,
+                                         style: TextStyle(
+                                            fontSize: 18,
+                                       
+                                           color: Colors.white,
+                                         ),
                                        ),
                                      ),
                                    ),
