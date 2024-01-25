@@ -44,7 +44,12 @@ dependencies:
   email_validator: '^2.1.16'
   simple_animations: ^5.0.2
   animate_do: ^3.1.2
-
+  flutter_native_splash: ^2.3.9
+flutter_native_splash:
+  android: true
+  ios: true
+  image: assets/carecraft.png
+  color: "#E8F4FA"
 
 
 dev_dependencies:
