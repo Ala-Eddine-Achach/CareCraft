@@ -90,6 +90,9 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         controller: _name,
+                        onEditingComplete: () {
+                          _email.text = _name.text.trim(); // Trim the trailing spaces
+                        },
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.person),
                           filled: true,
@@ -112,6 +115,9 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         controller: _email,
+                        onEditingComplete: () {
+                          _email.text = _email.text.trim(); // Trim the trailing spaces
+                        },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.email),

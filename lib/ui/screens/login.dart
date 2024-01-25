@@ -17,7 +17,7 @@ class _LoginState extends State<LogIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final TextEditingController _email;
   late final TextEditingController _password;
-  bool visible = true;
+  bool visible = false;
 
   @override
   void initState() {
@@ -94,6 +94,9 @@ class _LoginState extends State<LogIn> {
                             return null;
                           },
                           controller: _email,
+                          onEditingComplete: () {
+                            _email.text = _email.text.trim(); // Trim the trailing spaces
+                          },
                           decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email),
                             labelText: 'Email',

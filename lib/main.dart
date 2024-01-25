@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carecraft/core/services/favouritedrugprov.dart';
 import 'package:carecraft/core/services/navifgationprov.dart';
 import 'package:carecraft/ui/screens/doctorinfo.dart';
@@ -11,11 +13,23 @@ import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:carecraft/core/services/favouritedrugprov.dart';
+//local notification
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+
+import 'core/services/notifserv.dart';
+import 'core/services/notifservice.dart';
 import 'core/services/tipservice.dart';
 
 Future<void> main()  async {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService notificationService = NotificationService();
+  await notificationService.init();
+  if (Platform.isIOS) {
+    await notificationService.requestIOSPermissions();
+  } else {
+    await notificationService.requestAndroidPermission();
+  }
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.light,

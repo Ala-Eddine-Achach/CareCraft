@@ -21,7 +21,7 @@ class _SplashState extends State<Splash> {
   init() async {
     await Hive.initFlutter();
     Hive.registerAdapter<TimeOfDay>(TimeOfDayAdapter());
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds:3,microseconds: 500));
     Box _box =await Hive.openBox<TimeOfDay>('drug');
     Navigator.pushReplacementNamed(context, '/login');
   }

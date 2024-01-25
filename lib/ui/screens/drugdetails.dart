@@ -137,7 +137,7 @@ class _DrugDetailsState extends State<DrugDetails> {
                               onTap: () async {
                                 print("object");
                                 var time=await showTimePicker(context: context, initialTime:value.getNameById(medication.id)??TimeOfDay.now() );
-                                value.addReminder(medication.id, time!);
+                                value.addReminder(medication.id, time!,medication.name);
 
 
                               },
@@ -221,7 +221,7 @@ class _DrugDetailsState extends State<DrugDetails> {
 
                      if(!value.hasId(medication.id)){print("dcdcdc");
 
-                       value.addMedication(medication.id);}
+                       value.addMedication(medication.id,medication.name);}
                      else {
                        value.removeMedication(medication.id);}
                     },
