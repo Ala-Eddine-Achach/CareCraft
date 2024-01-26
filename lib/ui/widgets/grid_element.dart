@@ -53,7 +53,6 @@ class GridElement extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8.0, left: 8.0),
                       child: Text(
                         'Dr. ${doc.name}',
-                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
