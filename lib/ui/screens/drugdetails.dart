@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,28 +52,10 @@ class _DrugDetailsState extends State<DrugDetails> {
                   Container(height: MediaQuery.of(context).size.height * 0.5,
                     width: MediaQuery.of(context).size.width,
                     child: FittedBox(
-                      child: Image.network(
-                        medication.imageUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Icon(
-                            Icons.medical_services_outlined,
-
-                            color: Colors.blue,
-                          );
-                        },
-                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          }
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
+                      child: CachedNetworkImage(
+                        imageUrl: medication.imageUrl,
+                        placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.medical_information_outlined,color: bleuTresTresClair,),
                       ),
                     ),
                   ),

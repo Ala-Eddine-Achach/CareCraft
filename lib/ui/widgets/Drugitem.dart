@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
 Widget DrugItem(String name, String imageUrl, String description){
@@ -48,30 +49,10 @@ Widget DrugItem(String name, String imageUrl, String description){
                 ],
               ),
             ),
-            Image.network(
-              imageUrl,
-              width: 65,                    height: 90,
-
-              fit: BoxFit.cover, // Adjust the fit based on your requirements
-              errorBuilder: (context, error, stackTrace) {
-                return Icon(
-                  Icons.medical_services_outlined, // Show an error icon if the image fails to load
-                  size: 57,
-                  color: bleuClair, // Customize the error icon color
-                );
-              },
-              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                }
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
+            CachedNetworkImage(
+              imageUrl: imageUrl,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.medical_information_outlined,color: bleuTresTresClair,),
             ),
             SizedBox(width: 5,),
           ],

@@ -21,7 +21,7 @@ class _DrugsListState extends State<DrugsList> {
     medicationsList=drugsView.medicationsList;
     controller.addListener(() {
       setState(() {
-        topContainer = (controller.offset /140);
+        topContainer = (controller.offset /170);
       });
     });
     // TODO: implement initState

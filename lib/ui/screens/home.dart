@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carecraft/core/services/tipservice.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:flutter/material.dart';
@@ -45,28 +46,10 @@ class _HomeState extends State<Home> {
                                  width: double.infinity,
 
                                  child: FittedBox(
-                                   child: Image.network(
-                                     value.currentTip.image,
-                                     fit: BoxFit.cover,
-                                     errorBuilder: (context, error, stackTrace) {
-                                       return Icon(
-                                         Icons.tips_and_updates_outlined,
-
-                                         color: Colors.blue,
-                                       );
-                                     },
-                                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                                       if (loadingProgress == null) {
-                                         return child;
-                                       }
-                                       return Center(
-                                         child: CircularProgressIndicator(
-                                           value: loadingProgress.expectedTotalBytes != null
-                                               ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                               : null,
-                                         ),
-                                       );
-                                     },
+                                   child: CachedNetworkImage(
+                                     imageUrl: value.currentTip.image ,
+                                     placeholder: (context, url) => CircularProgressIndicator(),
+                                     errorWidget: (context, url, error) => Icon(Icons.tips_and_updates,color: bleu,),
                                    ),
                                  ),
                                ),
