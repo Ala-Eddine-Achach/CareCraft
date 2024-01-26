@@ -1,6 +1,6 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:carecraft/ui/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -45,14 +45,8 @@ class _LoginState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    final double width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: bleuTresClair,
@@ -94,9 +88,6 @@ class _LoginState extends State<LogIn> {
                             return null;
                           },
                           controller: _email,
-                          onEditingComplete: () {
-                            _email.text = _email.text.trim(); // Trim the trailing spaces
-                          },
                           decoration: InputDecoration(
                             prefixIcon: Icon(Icons.email),
                             labelText: 'Email',
@@ -122,7 +113,12 @@ class _LoginState extends State<LogIn> {
                             prefixIcon: Icon(Icons.lock),
                             suffixIcon: IconButton(
                               onPressed: changeVisibility,
-                              icon: Icon(visible ? Icons.visibility : Icons.visibility_off,color: Colors.black,), // Use different icons based on the 'visible' state
+                              icon: Icon(
+                                visible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
+                              ), // Use different icons based on the 'visible' state
                             ),
                             labelText: 'Password',
                             filled: true,
@@ -137,18 +133,35 @@ class _LoginState extends State<LogIn> {
                     ),
                   ),
                   SizedBox(height: height * 0.03),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all(Size(width * 0.4, height * 0.06)),
-                      backgroundColor: MaterialStateProperty.all(bleu),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, '/home');
-                      }
-                    },
-                    child: Text('Log In',
-                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                  Builder(
+                    builder: (context) {
+                      return ElevatedButton(
+                        style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all(
+                              Size(width * 0.4, height * 0.06)),
+                          backgroundColor: MaterialStateProperty.all(bleu),
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final password = _password.text.trim();
+                            final email = _email.text.trim();
+                            try {
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: email, password: password);
+                              Navigator.pushNamed(context, '/home');
+                            } on FirebaseAuthException catch (e) {
+                              print(e.code);
+                              if (['invalid-credential'].contains(e.code)) {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invaid Credentials')));
+                              }
+                            }
+                          }
+                        },
+                        child: Text('Log In',
+                            style: TextStyle(color: Colors.white, fontSize: 18)),
+                      );
+                    }
                   ),
                   SizedBox(height: height * 0.02),
                   Text('Or use the following methods:',
@@ -157,11 +170,14 @@ class _LoginState extends State<LogIn> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      CircleAvatar(radius: width * 0.09,
+                      CircleAvatar(
+                          radius: width * 0.09,
                           backgroundImage: AssetImage(google)),
-                      CircleAvatar(radius: width * 0.09,
+                      CircleAvatar(
+                          radius: width * 0.09,
                           backgroundImage: AssetImage(whatsup)),
-                      CircleAvatar(radius: width * 0.09,
+                      CircleAvatar(
+                          radius: width * 0.09,
                           backgroundImage: AssetImage(facebook)),
                     ],
                   ),
@@ -195,5 +211,5 @@ class _LoginState extends State<LogIn> {
         ),
       ),
     );
-  }}
-
+  }
+}

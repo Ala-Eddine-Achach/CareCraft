@@ -15,14 +15,20 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 //local notification
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 import 'core/services/notifserv.dart';
 import 'core/services/notifservice.dart';
 import 'core/services/tipservice.dart';
+import 'firebase_options.dart';
 
 Future<void> main()  async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   NotificationService notificationService = NotificationService();
   await notificationService.init();
   if (Platform.isIOS) {

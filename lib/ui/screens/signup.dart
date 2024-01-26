@@ -1,12 +1,11 @@
-
 import 'package:animate_do/animate_do.dart';
 import 'package:carecraft/ui/theme.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/Data/assetspaths.dart';
-
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -22,7 +21,7 @@ class _SignUpState extends State<SignUp> {
   late final TextEditingController _name;
   late final TextEditingController _cpassword;
   bool visible = true;
-  bool _checked=false;
+  bool _checked = false;
 
   @override
   void initState() {
@@ -70,6 +69,7 @@ class _SignUpState extends State<SignUp> {
               height: height * 0.29,
             ),
             Container(
+              height: height * 0.71,
               width: double.infinity,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(233, 237, 240, 0.8),
@@ -90,9 +90,6 @@ class _SignUpState extends State<SignUp> {
                           return null;
                         },
                         controller: _name,
-                        onEditingComplete: () {
-                          _email.text = _name.text.trim(); // Trim the trailing spaces
-                        },
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.person),
                           filled: true,
@@ -116,7 +113,8 @@ class _SignUpState extends State<SignUp> {
                         },
                         controller: _email,
                         onEditingComplete: () {
-                          _email.text = _email.text.trim(); // Trim the trailing spaces
+                          _email.text =
+                              _email.text.trim(); // Trim the trailing spaces
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -143,7 +141,9 @@ class _SignUpState extends State<SignUp> {
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock),
                           suffixIcon: IconButton(
-                            icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+                            icon: Icon(visible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
                             onPressed: () {
                               setState(() {
                                 visible = !visible;
@@ -174,7 +174,9 @@ class _SignUpState extends State<SignUp> {
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock),
                           suffixIcon: IconButton(
-                            icon: Icon(visible ? Icons.visibility : Icons.visibility_off),
+                            icon: Icon(visible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
                             onPressed: () {
                               setState(() {
                                 visible = !visible;
@@ -224,39 +226,54 @@ class _SignUpState extends State<SignUp> {
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(bleu),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               if (!_checked) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Please agree to the terms and conditions'),
+                                    content: Text(
+                                        'Please agree to the terms and conditions'),
                                   ),
                                 );
                               } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'You have been successfully signed up. You will be redirected.',
+                                final password = _password.text.trim();
+                                final email = _email.text.trim();
+                                try {
+                                  await FirebaseAuth.instance
+                                      .createUserWithEmailAndPassword(
+                                          email: email, password: password);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'You have been successfully signed up. You will be redirected.',
+                                      ),
                                     ),
-                                  ),
-                                );
-                                Future.delayed(
-                                  Duration(seconds: 1, milliseconds: 500),
-                                      () {
-                                    Navigator.pushNamed(context, '/login');
-                                  },
-                                );
+                                  );
+                                  Future.delayed(
+                                    Duration(seconds: 1, milliseconds: 500),
+                                    () {
+                                      Navigator.pushNamed(context, '/login');
+                                    },
+                                  );
+                                } on FirebaseAuthException catch (e) {
+                                  if(['weak-password','email-already-in-use'].contains(e.code)){
+                                  String err=e.code;
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(err)));
+                                  }
+                                }
                               }
                             }
                           },
-                          child: Text('Sign Up'
-                              ,style: TextStyle(color: Colors.white, fontSize: 18)),
+                          child: Text('Sign Up',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18)),
                         ),
                       ),
                     ],
@@ -268,6 +285,5 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
-
   }
 }

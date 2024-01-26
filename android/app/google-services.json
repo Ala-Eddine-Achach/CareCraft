@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "97290346204",
+    "project_id": "care-craft",
+    "storage_bucket": "care-craft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97290346204:android:c1f61018f23b6e16685e19",
+        "android_client_info": {
+          "package_name": "com.example.carecraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsXqvOiqV7QbCC1CoG2bSpZvEO2jwajaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
