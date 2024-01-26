@@ -1,4 +1,5 @@
 import 'package:carecraft/ui/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -60,7 +61,13 @@ class _ProfileState extends State<Profile> {
           ProfileMenuWidget(icon: LineAwesomeIcons.user_check,title: "User Management",onPress: (){},end: false),
           ProfileMenuWidget(icon: LineAwesomeIcons.info,title: "Settings",onPress: (){},end: false),
           ProfileMenuWidget(icon: LineAwesomeIcons.alternate_sign_out,title: "Sign Out",onPress: (){
-            Navigator.pushNamed(context, '/login');
+            try{
+            FirebaseAuth.instance.signOut();
+            Navigator.pushNamed(context, '/login');}
+                on FirebaseAuthException catch(e){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occured')));
+
+                }
           },end: true,option:Colors.red),
         ],
       ),

@@ -106,7 +106,7 @@ class _SignUpState extends State<SignUp> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your email';
-                          } else if (!EmailValidator.validate(value)) {
+                          } else if (!EmailValidator.validate(value.trim())) {
                             return 'Enter a valid email';
                           }
                           return null;
@@ -263,9 +263,12 @@ class _SignUpState extends State<SignUp> {
                                     },
                                   );
                                 } on FirebaseAuthException catch (e) {
-                                  if(['weak-password','email-already-in-use'].contains(e.code)){
-                                  String err=e.code;
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(err)));
+                                  if(e.code=='weak-password'){
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.code+', passwords needs to be at least 6 characters long')));
+
+                                  }
+                                 else if(e.code=='email-already-in-use'){
+                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.code)));
                                   }
                                 }
                               }
