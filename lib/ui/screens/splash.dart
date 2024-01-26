@@ -1,7 +1,11 @@
+import 'package:carecraft/ui/screens/login.dart';
 import 'package:carecraft/ui/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+
+import 'home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -11,6 +15,7 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  bool delayCompleted = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -21,63 +26,78 @@ class _SplashState extends State<Splash> {
   init() async {
     await Hive.initFlutter();
     Hive.registerAdapter<TimeOfDay>(TimeOfDayAdapter());
-    await Future.delayed(Duration(seconds:3,microseconds: 500));
     Box _box =await Hive.openBox<TimeOfDay>('drug');
-    Navigator.pushReplacementNamed(context, '/login');
   }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [bleuTresTresClair,
+                    bleuTresClair,
+                    bleuClair,
+                    bleu,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight
 
-      body:
+              )
+          ),
+          child:  Center(
+            child:Stack(
+                alignment: Alignment.center, // Align items at the top center
+                children: [
+                  Positioned(
+                    //to has 20% of the screen height
+                      top:   0,
+                      child: Image.asset(
+                        'assets/carecraft.png',
+                        height:MediaQuery.of(context).size.width * 0.9,
+                        width: MediaQuery.of(context).size.height * 0.9,
+                      )
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.41,
+                    left: MediaQuery.of(context).size.width * 0.45,// Adjust the top position as needed
+                    child: Image.asset(
+                      'assets/androidinsat.png',
+                      height:MediaQuery.of(context).size.width * 0.23,
+                      width: MediaQuery.of(context).size.height * 0.23,
+                    ),),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.45, // Adjust the top position as needed
+                    child: Image.asset(
+                      'assets/splash.png',
+                      height:MediaQuery.of(context).size.width * 1.1,
+                      width: MediaQuery.of(context).size.height * 1.1,
+                    ),
+                  ),
+                  StreamBuilder<User?>(
+                      stream: FirebaseAuth.instance.authStateChanges(),
+                      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+                        Future.delayed(Duration(seconds: 3, milliseconds: 500), () {
+                          delayCompleted = true;
+                          setState(() {}); // Trigger rebuild after delay completion
+                        });
+                        if (snapshot.connectionState == ConnectionState.active && delayCompleted) {
+                          if (snapshot.hasData && snapshot.data != null) {
+                            return Home();
+                          }
+                          else{
+                            return LogIn();
+                          }
+                        }
+                        else{
+                          return CircularProgressIndicator();
+                        }
+                      }
 
-      Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [bleuTresTresClair,
-                  bleuTresClair,
-                  bleuClair,
-                  bleu,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight
-
-            )
-        ),
-        child:  Center(
-          child:Stack(
-            alignment: Alignment.center, // Align items at the top center
-            children: [
-              Positioned(
-               //to has 20% of the screen height
-                top:   0,
-                child: Image.asset(
-                  'assets/carecraft.png',
-                  height:MediaQuery.of(context).size.width * 0.9,
-                  width: MediaQuery.of(context).size.height * 0.9,
-                )
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.41,
-                left: MediaQuery.of(context).size.width * 0.45,// Adjust the top position as needed
-                child: Image.asset(
-                  'assets/androidinsat.png',
-                  height:MediaQuery.of(context).size.width * 0.23,
-                  width: MediaQuery.of(context).size.height * 0.23,
-                ),),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.45, // Adjust the top position as needed
-                child: Image.asset(
-                  'assets/splash.png',
-                  height:MediaQuery.of(context).size.width * 1.1,
-                  width: MediaQuery.of(context).size.height * 1.1,
-                ),
-              ),
-
-            ],
-          )
-        ),
-      ),);
-
+                  )
+                ]
+            ),
+          ),
+        )
+    );
   }
 }
