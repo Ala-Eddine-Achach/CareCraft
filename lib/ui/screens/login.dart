@@ -82,7 +82,7 @@ class _LoginState extends State<LogIn> {
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter some text';
-                            } else if (!EmailValidator.validate(value)) {
+                            } else if (!EmailValidator.validate(value.trim())) {
                               return 'Enter a valid Email';
                             }
                             return null;
