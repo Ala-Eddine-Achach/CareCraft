@@ -1,8 +1,9 @@
-import 'package:carecraft/core/models/doctormodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/models/doctormodel.dart';
 import '../theme.dart';
+
 class GridElement extends StatelessWidget {
   GridElement({required this.doc});
 
@@ -10,15 +11,10 @@ class GridElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define the dimensions of the widget
-    Icon red=Icon(Icons.do_not_disturb_on_total_silence,color: Colors.red,);
-    Icon green=Icon(Icons.do_not_disturb_on_total_silence,color: Colors.greenAccent,);
     double width = MediaQuery.of(context).size.width * 0.4;
-    double height = MediaQuery.of(context).size.height * 0.35;
 
     return SizedBox(
       width: width,
-      height: height,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
         child: Material(
@@ -29,22 +25,27 @@ class GridElement extends StatelessWidget {
             child: Material(
               child: Container(
                 color: Colors.white,
-                margin: EdgeInsets.zero,
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: ClipRRect(
+                    Container(
+                      margin: EdgeInsets.all(8),
+                      //rounded edges
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          width: width,
-                          height: height * 0.53,
-                          color: Colors.blue[100],
+                        color: bleuTresClair,
+                      ),
+
+                      child: SizedBox(
+
+                        width: width,
+                        height: 140,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
                             doc.image,
-                            height: height * 0.53,
-                            width: width,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -66,7 +67,7 @@ class GridElement extends StatelessWidget {
                             doc.function,
                             style: TextStyle(fontSize: 20, color: CupertinoColors.systemGrey2),
                           ),
-                          (doc.available) ? green : red,
+                          (doc.available) ? Icon(Icons.do_not_disturb_on_total_silence, color: Colors.greenAccent) : Icon(Icons.do_not_disturb_on_total_silence, color: Colors.red),
                         ],
                       ),
                     ),
@@ -76,8 +77,8 @@ class GridElement extends StatelessWidget {
                       },
                       child: Text('Contact Now'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: bleu,
-                        foregroundColor: Colors.white,
+                       foregroundColor:Colors.white,
+                        backgroundColor:  bleu,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       ),
                     ),
