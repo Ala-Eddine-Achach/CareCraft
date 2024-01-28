@@ -149,7 +149,8 @@ class _LoginState extends State<LogIn> {
                               await FirebaseAuth.instance
                                   .signInWithEmailAndPassword(
                                       email: email, password: password);
-                              Navigator.pushNamed(context, '/home');
+                              Navigator.pushNamed(context, '/home',
+                                  arguments: {'email': email});
                             } on FirebaseAuthException catch (e) {
                               print(e.code);
                               if (['invalid-credential'].contains(e.code)) {

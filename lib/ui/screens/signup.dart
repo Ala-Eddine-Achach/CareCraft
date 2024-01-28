@@ -259,7 +259,7 @@ class _SignUpState extends State<SignUp> {
                                   Future.delayed(
                                     Duration(seconds: 1, milliseconds: 500),
                                     () {
-                                      Navigator.pushNamed(context, '/login');
+                                      Navigator.pushReplacementNamed(context, '/login');
                                     },
                                   );
                                 } on FirebaseAuthException catch (e) {

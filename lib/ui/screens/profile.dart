@@ -18,7 +18,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     final double _width=MediaQuery.of(context).size.width;
     final double _height=MediaQuery.of(context).size.height;
-
+    var data = ModalRoute.of(context)!.settings.arguments as Map;
     //a container with a text widget
     return Scaffold(
       body: Column(
@@ -35,12 +35,12 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: Text('Jalel lkadri',style: TextStyle(
+            child: Text('Jalel Lkadri',style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold
             ),),
           ),
-          Text('Jalel_4-4-2@gmail.com',style: TextStyle(
+          Text(data['email'],style: TextStyle(
             color: Colors.grey.shade700
           ),),
           SizedBox(height: _height*0.015,),
@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
           ProfileMenuWidget(icon: LineAwesomeIcons.alternate_sign_out,title: "Sign Out",onPress: (){
             try{
             FirebaseAuth.instance.signOut();
-            Navigator.pushNamed(context, '/login');}
+            Navigator.pushReplacementNamed(context, '/login');}
                 on FirebaseAuthException catch(e){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occured')));
 

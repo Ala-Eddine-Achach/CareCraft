@@ -33,9 +33,13 @@ class _SplashState extends State<Splash> {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       Future.delayed(Duration(seconds: 3, milliseconds: 500), () {
         if (user != null) {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/home',arguments:
+          {
+            'name': user.displayName,
+            'email': user.email,
+          });
         } else {
-          Navigator.pushNamed(context, '/login');
+          Navigator.pushReplacementNamed(context, '/login',);
         }
       });
     });

@@ -21,6 +21,7 @@ class Main extends StatelessWidget {
       MyMedications(),
       Profile(),
     ];
+    var data = ModalRoute.of(context)!.settings.arguments as Map;
     return Scaffold(
 
       //app bar containing text hello user
@@ -29,7 +30,7 @@ class Main extends StatelessWidget {
         backgroundColor: bleuTresClair,
         elevation: 0,
         title: TextWidget(
-          "Hello, Ala Edddine",
+          "Hello, Jalel",
           20,
           Colors.black,
           FontWeight.bold,
